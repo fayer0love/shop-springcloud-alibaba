@@ -1,0 +1,68 @@
+# 从配置文件中，我们也可以看出，用户微服务启动后监听的端口为8060，基础的访问路径为/user，
+# 应用的名称为server-user，使用的数据库为MySQL，使用的数据库连接池为阿里开源的Druid，
+# 项目的交 互编码采用UTF-8，持久化框架采用的是MyBatis-Plus。
+# 这里注意一点的是，我们在application.yaml文件中的mybatis-plus节点下定义了Mapper的xml文件 的存放位置，
+# 如下所示
+# spring:
+#   mybatis-plus:
+#     mapper-locations: classpath:/mapper/*.xml
+# Mapper的xml文件位置在当前项目的classpath目录下的mapper目录下。
+# 也就是说，我们在使用 MyBatis-Plus框架时，如果涉及到自己写SQL语句时，会将SQL语句写到XML文件中，
+# 而不是通过注解 的方式写到接口的方法上。
+server:
+  port: 8060
+  servlet:
+    context-path: /user
+spring:
+  application:
+    name: server-user
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shop?userSSL=false@useUnicode=true&characterEncoding=utf-8&allowMultipleQueries=true@serverTimezone=america/new_york
+    username: root
+    password: root
+    platform: mysql
+    type: com.alibaba.druid.pool.DruidDataSource
+    # Connection pool additional settings for all the data sources above
+    # Initialization, min, max
+    initialSize: 10
+    minIdle: 5
+    maxActive: 20
+    # connection trial timeout
+    maxWait: 60000
+    # Time interval of checking and closing the Idle connection, ms
+    timeBetweenEvictionRunsMillis: 3600000
+    # Min lifetime of connection in pool, ms
+    minEvictableIdleTimeMillis: 3600000
+    validationQuery: select 1 from dual
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # open PSCache and its size for each connection
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    maxOpenPreparedStatements: 20
+    # Filters of stat
+    filters: stat
+
+  http:
+    encoding:
+      enabled: true
+      Charset: UTF-8
+      force: true
+
+  mybatis-plus:
+    global-config:
+      db-config:
+        id-type: auto
+        field-strategy: not-empty
+        table-underline: true
+        db-type: oracle
+        logic-delete-value: 1
+        logic-not-delete-value: 0
+    mapper-locations: classpath:/mapper/*.xml
+    configuration:
+      jdbc-type-for-null: 'null'
+
+
+

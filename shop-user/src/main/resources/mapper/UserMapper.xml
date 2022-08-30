@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.jk.shop.user.mapper.UserMapper">
+<!--UserMapper.xml文件与UserMapper接口是一一对应的，
+UserMapper中定义的接口方法，都会在 UserMapper.xml文件中写对应的SQL语句。
+由于UserMapper接口中未定义任何方法，所以在 UserMapper.xml文件中，
+也就未声明任何SQL语句了。
+-->
+
+</mapper>
