@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @description User
  */
 @Data
-@TableName("user")
+@TableName("t_user")
 public class User implements Serializable {
 
     @Serial
